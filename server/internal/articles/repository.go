@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/jmoiron/sqlx"
+	"github.com/remusxb/haiilo_articles/foundation/database/postgres"
 	"github.com/remusxb/haiilo_articles/internal/model"
 	"github.com/remusxb/haiilo_articles/pkg/dto"
 )
@@ -29,7 +30,7 @@ func (repository repository) create(ctx context.Context, article model.Article) 
 
 	_, err := repository.database.ExecContext(ctx, query, article.Id, article.Title, article.Link)
 	if err != nil {
-		return err
+		return postgres.ParseError(err)
 	}
 
 	return nil
@@ -43,9 +44,9 @@ func (repository repository) list(ctx context.Context) (dto.ListArticlesOutput, 
 		model.GetTableName(),
 	)
 
-	err := repository.database.SelectContext(ctx, &output, query)
+	err := repository.database.SelectContext(ctx, &output.Articles, query)
 	if err != nil {
-		return dto.ListArticlesOutput{}, err
+		return dto.ListArticlesOutput{}, postgres.ParseError(err)
 	}
 
 	return output, err

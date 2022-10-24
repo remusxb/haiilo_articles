@@ -5,6 +5,8 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/go-playground/validator/v10"
+	"github.com/remusxb/haiilo_articles/foundation/database/postgres"
 	"github.com/remusxb/haiilo_articles/foundation/http/response"
 	"github.com/remusxb/haiilo_articles/pkg/dto"
 )
@@ -27,9 +29,14 @@ func (handler Handler) Create(ctx context.Context, writer http.ResponseWriter, r
 
 	output, err := handler.service.create(ctx, input)
 	if err != nil {
-		// some error handling
-		statusCode = http.StatusInternalServerError
-		output = err
+		switch err.(type) {
+		case *postgres.ErrUniqueFieldViolation, validator.ValidationErrors:
+			statusCode = http.StatusBadRequest
+			output = err.Error()
+		default:
+			statusCode = http.StatusInternalServerError
+			output = err
+		}
 	}
 
 	_, err = response.Write(writer, output, statusCode)
@@ -41,9 +48,16 @@ func (handler Handler) Create(ctx context.Context, writer http.ResponseWriter, r
 }
 
 func (handler Handler) List(ctx context.Context, writer http.ResponseWriter, request *http.Request) error {
+	var output interface{}
 	statusCode := http.StatusOK
 
-	_, err := response.Write(writer, nil, statusCode)
+	output, err := handler.service.list(ctx)
+	if err != nil {
+		statusCode = http.StatusInternalServerError
+		output = err
+	}
+
+	_, err = response.Write(writer, output, statusCode)
 	if err != nil {
 		log.Println(err.Error())
 	}

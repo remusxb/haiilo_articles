@@ -13,7 +13,7 @@ const (
 	idleTimeoutEnv         = "APP_SERVER_IDLE_TIMEOUT"          // server's idle timeout env var name, value eg.: 30s
 	gracefulWaitTimeoutEnv = "APP_SERVER_GRACEFUL_WAIT_TIMEOUT" // gracefully wait env var name, value eg.: 15s
 
-	defaultAddress             = "127.0.0.1:8080"                // default http server address bind
+	defaultAddress             = "0.0.0.0:8080"                  // default http server address bind
 	defaultWriteTimeout        = time.Second * time.Duration(15) // default server write timeout
 	defaultReadTimeout         = time.Second * time.Duration(15) // default server read timeout
 	defaultIdleTimeout         = time.Second * time.Duration(60) // default server idle timeout

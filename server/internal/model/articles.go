@@ -23,7 +23,7 @@ func GetColumns() []string {
 	return []string{
 		"id",
 		"title",
-		"string",
+		"link",
 	}
 }
 

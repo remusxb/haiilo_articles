@@ -2,14 +2,28 @@ version: "3.9"
 
 services:
   db:
-    image: postgres:14.1-alpine
+    image: postgres:15.0-alpine
     environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: articles
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=haiilo
     volumes:
-      - db:/var/lib/postgresql
+      - ./db/postgres/structure.sql:/docker-entrypoint-initdb.d/1_structure.sql
+      - ./db/postgres/data.sql:/docker-entrypoint-initdb.d/2_data.sql
     ports:
       - "5433:5432"
+  server:
+    build: server
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - POSTGRES_USERNAME=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=db:5432
+      - POSTGRES_DATABASE=haiilo
+      - POSTGRES_DISABLE_TLS=true
 
 volumes:
   db:

@@ -8,8 +8,8 @@ import (
 
 type (
 	CreateArticleInput struct {
-		Title string `json:"title"`
-		Link  string `json:"link"`
+		Title string `json:"title" validate:"required,min=5,max=500"`
+		Link  string `json:"link" validate:"required,min=2,max=1000"`
 	}
 
 	ArticleOutput struct {

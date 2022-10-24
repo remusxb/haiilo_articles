@@ -1,0 +1,64 @@
+{
+	"info": {
+		"_postman_id": "6be8fe45-7e6e-4108-9ca0-37f35379c4c8",
+		"name": "Haiilo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19456327"
+	},
+	"item": [
+		{
+			"name": "Create article",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/articles?title=article 1&link=/article-1",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"articles"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "article 1"
+						},
+						{
+							"key": "link",
+							"value": "/article-1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List articles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/articles",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"articles"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

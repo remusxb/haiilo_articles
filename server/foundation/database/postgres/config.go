@@ -12,7 +12,7 @@ const (
 	defaultUsername = "postgres"
 	defaultPassword = "postgres"
 	defaultHost     = "127.0.0.1:5433"
-	defaultDatabase = "haiilo_articles"
+	defaultDatabase = "haiilo"
 	defaultTLS      = true
 )
 

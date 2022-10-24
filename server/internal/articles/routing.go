@@ -15,5 +15,5 @@ func NewRouter(appRouter *routing.AppRouter) {
 
 	subRouter := appRouter.SubRouter("/articles")
 	subRouter.Handle(http.MethodGet, "", handler.List)
-	subRouter.Handle(http.MethodGet, "", handler.Create)
+	subRouter.Handle(http.MethodPost, "", handler.Create)
 }
