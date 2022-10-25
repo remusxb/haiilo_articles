@@ -19,12 +19,15 @@ OR
   * `curl -v --location --request GET 'http://127.0.0.1:8080/articles'`
 
 * POST `/articles` - create article
-  * `curl --location --request POST "http://0.0.0.0:8080/articles" \
-    --header "Content-Type: application/json" \
-    --data-raw "{
-    \"title\": \"article 1\",
-    \"link\": \"/article-1\"
-    }"` - this creates an article with `title: "article 1"` and `link: "/article-1"`
+```
+curl -v --location --request POST "http://0.0.0.0:8080/articles" \
+   --header "Content-Type: application/json" \
+   --data-raw "{
+   \"title\": \"article 1\",
+   \"link\": \"/article-1\"
+   }"
+``` 
+this creates an article with `title: "article 1"` and `link: "/article-1"`
 
 ## Running tests
 **NOTE: MUST BE RUN FROM THE `/server` FOLDER(run `cd server/` from the root folder)**
