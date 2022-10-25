@@ -1,8 +1,6 @@
 package dto
 
 import (
-	"net/url"
-
 	"github.com/google/uuid"
 )
 
@@ -22,15 +20,3 @@ type (
 		Articles []ArticleOutput `json:"articles"`
 	}
 )
-
-const (
-	fieldTitle = "title"
-	fieldLink  = "link"
-)
-
-func CreateArticlesInputFromUrlValues(queryParams url.Values) CreateArticleInput {
-	return CreateArticleInput{
-		Title: queryParams.Get(fieldTitle),
-		Link:  queryParams.Get(fieldLink),
-	}
-}
