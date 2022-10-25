@@ -10,9 +10,19 @@
 			"name": "Create article",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"article 1\",\n    \"link\": \"/article-1\"\n}"
+				},
 				"url": {
-					"raw": "http://0.0.0.0:8080/articles?title=article 1&link=/article-1",
+					"raw": "http://0.0.0.0:8080/articles",
 					"protocol": "http",
 					"host": [
 						"0",
@@ -23,16 +33,6 @@
 					"port": "8080",
 					"path": [
 						"articles"
-					],
-					"query": [
-						{
-							"key": "title",
-							"value": "article 1"
-						},
-						{
-							"key": "link",
-							"value": "/article-1"
-						}
 					]
 				}
 			},
